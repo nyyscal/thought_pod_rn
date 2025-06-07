@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React from 'react'
+import { dummyPosts } from '@/dummyData'
+import PostListItem from '@/components/PostListItem'
 
 const Home = () => {
   return (
-    <View className='flex-1 p-4'>
-      <Text className='text-3xl text-white font-bold p-2'>Home</Text>
-    </View>
+    <FlatList
+    data={dummyPosts}
+    renderItem={({item})=><PostListItem post={item}/>}
+    />
   )
 }
 

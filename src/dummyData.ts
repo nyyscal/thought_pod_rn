@@ -41,7 +41,7 @@ export const dummyUsers: User[] = [
 export const dummyPosts: Post[] = [
   {
     id: '1',
-    createdAt: '2024-05-01T10:00:00Z',
+    createdAt: '2025-05-01T10:00:00Z',
     content:
       'Just launched my new project! Check it out and let me know what you think.',
     user_id: '1',
@@ -52,7 +52,7 @@ export const dummyPosts: Post[] = [
   },
   {
     id: '2',
-    createdAt: '2024-05-01T11:30:00Z',
+    createdAt: '2025-06-01T11:30:00Z',
     content:
       "Working on some new digital art pieces. Can't wait to share them with you all!",
     user_id: '2',
@@ -63,7 +63,7 @@ export const dummyPosts: Post[] = [
   },
   {
     id: '3',
-    createdAt: '2024-05-01T12:15:00Z',
+    createdAt: '2025-06-01T12:15:00Z',
     content: 'Just captured this amazing sunset in Bali! 🌅',
     user_id: '3',
     user: dummyUsers[2],
@@ -73,7 +73,7 @@ export const dummyPosts: Post[] = [
   },
   {
     id: '4',
-    createdAt: '2024-05-01T13:00:00Z',
+    createdAt: '2025-06-03T13:00:00Z',
     content: 'New workout routine is paying off! Feeling stronger every day 💪',
     user_id: '4',
     user: dummyUsers[3],
@@ -83,7 +83,7 @@ export const dummyPosts: Post[] = [
   },
   {
     id: '5',
-    createdAt: '2024-05-01T14:30:00Z',
+    createdAt: '2025-06-05T14:30:00Z',
     content: 'Excited to announce our startup just secured seed funding!',
     user_id: '5',
     user: dummyUsers[4],
@@ -93,7 +93,7 @@ export const dummyPosts: Post[] = [
   },
   {
     id: '6',
-    createdAt: '2024-05-01T15:00:00Z',
+    createdAt: '2025-06-05T13:00:00Z',
     content: "That's amazing! What's the project about?",
     user_id: '2',
     user: dummyUsers[1],
@@ -103,7 +103,7 @@ export const dummyPosts: Post[] = [
   },
   {
     id: '7',
-    createdAt: '2024-05-01T15:30:00Z',
+    createdAt: '2025-06-01T15:30:00Z',
     content: "It's a new productivity app that helps teams collaborate better.",
     user_id: '1',
     user: dummyUsers[0],
@@ -161,34 +161,34 @@ export const dummyPosts: Post[] = [
     parent: null,
     replies: [],
   },
-  {
-    id: '13',
-    createdAt: '2024-05-01T18:30:00Z',
-    content: 'Set small, achievable goals and track your progress!',
-    user_id: '4',
-    user: dummyUsers[3],
-    parent_id: '12',
-    parent: null,
-    replies: [],
-  },
-  {
-    id: '14',
-    createdAt: '2024-05-01T19:00:00Z',
-    content: 'Love your art style! Do you take commissions?',
-    user_id: '3',
-    user: dummyUsers[2],
-    parent_id: '2',
-    parent: null,
-    replies: [],
-  },
-  {
-    id: '15',
-    createdAt: '2024-05-01T19:30:00Z',
-    content: 'Yes, I do! Feel free to DM me for details.',
-    user_id: '2',
-    user: dummyUsers[1],
-    parent_id: '14',
-    parent: null,
-    replies: [],
-  },
+  // {
+  //   id: '13',
+  //   createdAt: '2024-05-01T18:30:00Z',
+  //   content: 'Set small, achievable goals and track your progress!',
+  //   user_id: '4',
+  //   user: dummyUsers[3],
+  //   parent_id: '12',
+  //   parent: null,
+  //   replies: [],
+  // },
+  // {
+  //   id: '14',
+  //   createdAt: '2024-05-01T19:00:00Z',
+  //   content: 'Love your art style! Do you take commissions?',
+  //   user_id: '3',
+  //   user: dummyUsers[2],
+  //   parent_id: '2',
+  //   parent: null,
+  //   replies: [],
+  // },
+  // {
+  //   id: '15',
+  //   createdAt: '2024-05-01T19:30:00Z',
+  //   content: 'Yes, I do! Feel free to DM me for details.',
+  //   user_id: '2',
+  //   user: dummyUsers[1],
+  //   parent_id: '14',
+  //   parent: null,
+  //   replies: [],
+  // },
 ];
