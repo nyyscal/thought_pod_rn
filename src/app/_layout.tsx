@@ -17,7 +17,7 @@ export default function RootLayout(){
   console.log("Root Layout!")
   return (
   <ThemeProvider value={myTheme}>
-    <Slot/> //page we are rendering
+    <Slot/>
     </ThemeProvider>
     )
 }

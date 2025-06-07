@@ -43,7 +43,7 @@ export const dummyPosts: Post[] = [
     id: '1',
     createdAt: '2025-05-01T10:00:00Z',
     content:
-      'Just launched my new project! Check it out and let me know what you think.',
+      'Just launched my new project wow! Check it out and let me know what you think.',
     user_id: '1',
     user: dummyUsers[0],
     parent_id: null,

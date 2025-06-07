@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import {Feather} from "@expo/vector-icons"
 export default function TabsLayout(){
-  return <Tabs screenOptions={{ tabBarShowLabel:false}}>
+  return <Tabs screenOptions={{ tabBarShowLabel:false, }}>
     <Tabs.Screen 
     name="index" 
     options={{title:"Home", 
