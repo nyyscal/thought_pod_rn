@@ -10,9 +10,12 @@ const Home = () => {
         data={dummyPosts}
         renderItem={({ item }) => <PostListItem post={item} />}
         ListHeaderComponent={() => (
+          <>
             <Link href="/new" className="text-blue-500 text-center text-2xl">
               New Post
             </Link>
+            <Link href="/login" className='text-blue-500 p-4'>Login</Link>
+            </>
         )}
         ListEmptyComponent={() => (
           <Text className="text-white text-center p-4">No posts yet</Text>
