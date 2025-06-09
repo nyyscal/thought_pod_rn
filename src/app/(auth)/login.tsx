@@ -7,15 +7,32 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  Alert,
 } from 'react-native';
 import { Link } from 'expo-router';
+import { supabase } from '@/lib/supabase';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    console.log('Logging in with:', email, password);
+  const handleLogin = async() => {
+     if(!email||!password){
+          Alert.alert("Please enter an email and password")
+          return
+        }
+      try {
+      setLoading(true)
+      const {error}= await supabase.auth.signInWithPassword({email,password})
+      if(error) Alert.alert(error.message)
+      console.log('Logging in with:', email, password);
+    } catch (error) {
+      console.log("Error in login",error)
+      Alert.alert("Login error")
+    }finally{
+      setLoading(false)
+    }
   };
 
   return (

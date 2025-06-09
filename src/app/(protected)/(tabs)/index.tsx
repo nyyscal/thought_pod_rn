@@ -14,7 +14,6 @@ const Home = () => {
             <Link href="/new" className="text-blue-500 text-center text-2xl">
               New Post
             </Link>
-            <Link href="/login" className='text-blue-500 p-4'>Login</Link>
             </>
         )}
         ListEmptyComponent={() => (

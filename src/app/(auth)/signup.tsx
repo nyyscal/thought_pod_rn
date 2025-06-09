@@ -6,16 +6,36 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from 'react-native';
 import { Link } from 'expo-router';
+import { supabase } from '@/lib/supabase';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
-    console.log('Logging in with:', email, password);
+  const handleSignup = async() => {
+    if(!email||!password){
+      Alert.alert("Please enter an email and password")
+      return
+    }
+    try {
+      setIsLoading(true)
+      const {data:{session},error}= await supabase.auth.signUp({email,password})
+
+  if(error) Alert.alert(error.message)
+  if(!session) Alert.alert("Please check your inbox for email verification!")
+  setIsLoading(false)
+  console.log('Logging in with:', email, password);
+    } catch (error) {
+      console.log("Login error:",error)
+    }finally{
+      setIsLoading(false)
+    }
   };
+
 
   return (
     <KeyboardAvoidingView
@@ -53,10 +73,11 @@ const Signup = () => {
         </View>
 
         <TouchableOpacity
-          onPress={handleLogin}
+          onPress={handleSignup}
+          disabled={isLoading}
           className="bg-white py-3 rounded-xl mt-6"
         >
-          <Text className="text-black text-center text-lg font-semibold">Login</Text>
+          <Text className="text-black text-center text-lg font-semibold">{isLoading? "Loggin in..." : "Sign up"}</Text>
         </TouchableOpacity>
 
         <View className="flex-row justify-center mt-6">
