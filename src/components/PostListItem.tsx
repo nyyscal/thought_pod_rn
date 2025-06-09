@@ -14,7 +14,7 @@ const PostListItem = ({ post }: { post: Post }) => {
     <View className="flex-row px-4 py-3 border-b border-neutral-800/70">
       {/* Profile Image */}
       <Image
-        source={{ uri: user.image }}
+        source={{ uri: post.user.avatar_url}}
         className="w-10 h-10 rounded-full mr-3"
       />
 
@@ -22,7 +22,7 @@ const PostListItem = ({ post }: { post: Post }) => {
       <View className="flex-1">
         {/* User Info */}
         <View className="flex-row items-center gap-1 mb-1 flex-wrap">
-          <Text className="text-white font-semibold">{user.name}</Text>
+          <Text className="text-white font-semibold">{post.user.username}</Text>
           {/* Uncomment below if you want to show @username */}
           {/* <Text className="text-neutral-400">@{user.username}</Text> */}
           <Text className="text-neutral-500 text-xs ml-auto">
@@ -38,7 +38,7 @@ const PostListItem = ({ post }: { post: Post }) => {
           {/* Comment */}
           <TouchableOpacity className="flex-row items-center gap-1">
             <MessageCircle size={18} color="#d1d5db" />
-            <Text className="text-gray-300 text-sm">{post.replies.length}</Text>
+            <Text className="text-gray-300 text-sm">{0}</Text>
           </TouchableOpacity>
 
           {/* Retweet */}

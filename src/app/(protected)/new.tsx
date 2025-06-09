@@ -1,10 +1,22 @@
-import { View, Text, TouchableOpacity, TextInput,Pressable, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, Text, TextInput,Pressable, KeyboardAvoidingView, Platform, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { Link, router } from 'expo-router'
 import {SafeAreaView} from "react-native-safe-area-context"
+import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/providers/AuthProvider'
 
 const NewPostScreen = () => {
   const [text,setText] = useState("")
+  const {user} = useAuth()
+  const onSubmitHandler = async()=>{
+    if(!text || !user) return
+    const {data,error} =await supabase.from("posts").insert({content:text,user_id:user.id})
+
+    if(error){
+      console.log(error)
+      Alert.alert("Error in submit handler")
+    }
+    setText("")
+  }
   return (
     <SafeAreaView edges={["bottom"]} className='p-4 flex-1'>
       <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === "ios"? "padding":"height"}
@@ -29,7 +41,7 @@ const NewPostScreen = () => {
       multiline numberOfLines={4}/>
 
       <View className='mt-auto'>
-        <Pressable onPress={()=> console.log(`post:${text}`)} className='bg-white p-3 self-end rounded-full px-6'>
+        <Pressable onPress={()=>onSubmitHandler()} className='bg-white p-3 self-end rounded-full px-6'>
           <Text className='text-black font-bold'>Post</Text>
         </Pressable>
       </View>
