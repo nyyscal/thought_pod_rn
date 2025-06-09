@@ -1,7 +1,8 @@
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import {Feather} from "@expo/vector-icons"
+import { View } from "lucide-react-native";
 export default function TabsLayout(){
-  return <Tabs screenOptions={{ tabBarShowLabel:false, }}>
+  return <Tabs screenOptions={{ tabBarShowLabel:false, headerTitleAlign:"center", tabBarStyle:{ paddingBottom:10}}}>
     <Tabs.Screen 
     name="index" 
     options={{title:"Home", 
@@ -12,6 +13,20 @@ export default function TabsLayout(){
     options={{title:"Search", 
     tabBarIcon:({size,color})=><Feather name="search" size={size} 
     color={color}/>}}/>
+
+    <Tabs.Screen 
+    name="plus" 
+    options={{title:"Plus", 
+      tabBarIcon:({size,color})=>(
+      <Feather name="plus" size={size} 
+        color={color}/>
+  )}}
+    listeners={{
+      tabPress:(e)=>{
+        e.preventDefault()
+        router.push("/new")
+      }
+    }}/>
     <Tabs.Screen 
     name="notifications" 
     options={{title:"Notifications", 

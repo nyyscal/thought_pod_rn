@@ -38,13 +38,13 @@ const Home = () => {
       <FlatList
         data={data}
         renderItem={({ item }) => <PostListItem post={item} />}
-        ListHeaderComponent={() => (
-          <>
-            <Link href="/new" className="text-blue-500 text-center text-2xl">
-              New Post
-            </Link>
-            </>
-        )}
+        // ListHeaderComponent={() => (
+        //   <>
+        //     <Link href="/new" className="text-blue-500 text-center text-2xl">
+        //       New Post
+        //     </Link>
+        //     </>
+        // )}
         ListEmptyComponent={() => (
           <Text className="text-white text-center p-4">No posts yet</Text>
         )}
