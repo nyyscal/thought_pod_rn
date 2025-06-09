@@ -1,28 +1,42 @@
-import { FlatList, Text } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, Text } from 'react-native';
+import React from 'react';
 import PostListItem from '@/components/PostListItem';
 import { Link } from 'expo-router';
-import { Post } from '@/types';
 import { supabase } from '@/lib/supabase';
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-  const [posts,setPosts] = useState<Post[]>([])
 
-  useEffect(()=>{
-    const fetchPosts = async()=>{
-      const {data,error} = await supabase.from("posts").select("*,user:profiles(*)")
-      if(error){
-        console.error(error)
-      }
-      setPosts(data as Post[])
+  const fetchPosts = async()=>{
+      const {data,error} = await supabase.from("posts").select("*,user:profiles(*)").throwOnError()
+     return data
     }
-    fetchPosts()
-  },[])
 
-  console.log(JSON.stringify(posts,null,2))
+  const {data, isLoading, error} = useQuery({
+    queryKey:["posts"],
+    queryFn: fetchPosts
+  })
+
+  // const [posts,setPosts] = useState<Post[]>([])
+
+  // useEffect(()=>{
+    
+  //   fetchPosts()
+  // },[])
+
+  // console.log(JSON.stringify(posts,null,2))
+
+  if(isLoading){
+    return <ActivityIndicator size={"large"}/>
+  }
+
+  if(error){
+    return <Text className='text-red-500'>{error.message}</Text>
+  }
+
   return (
       <FlatList
-        data={posts}
+        data={data}
         renderItem={({ item }) => <PostListItem post={item} />}
         ListHeaderComponent={() => (
           <>
