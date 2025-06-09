@@ -3,20 +3,36 @@ import React, { useState } from 'react'
 import {SafeAreaView} from "react-native-safe-area-context"
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/providers/AuthProvider'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { router } from 'expo-router'
+
+const createPost = async(content:string,user_id:string) =>{
+  const {data} = await supabase.from("posts")
+  .insert({content,user_id})
+  .select("*")
+  .throwOnError()
+  
+  return data
+}
 
 const NewPostScreen = () => {
   const [text,setText] = useState("")
   const {user} = useAuth()
-  const onSubmitHandler = async()=>{
-    if(!text || !user) return
-    const {data,error} =await supabase.from("posts").insert({content:text,user_id:user.id})
 
-    if(error){
-      console.log(error)
-      Alert.alert("Error in submit handler")
+  const queryClient = useQueryClient()
+
+ const {mutate, isPending,error} = useMutation({
+    mutationFn: ()=>createPost(text,user!.id),
+    onSuccess:(data)=>{
+      setText("")
+      router.back()
+      queryClient.invalidateQueries({queryKey:["posts"]})
+    },
+    onError:(error)=>{
+      Alert.alert(error.message)
     }
-    setText("")
-  }
+  })
+
   return (
     <SafeAreaView edges={["bottom"]} className='p-4 flex-1'>
       <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === "ios"? "padding":"height"}
@@ -40,8 +56,10 @@ const NewPostScreen = () => {
       className='text-white text-lg'
       multiline numberOfLines={4}/>
 
+      {error && <Text className='text-red-500'>{error.message}</Text>}
+
       <View className='mt-auto'>
-        <Pressable onPress={()=>onSubmitHandler()} className='bg-white p-3 self-end rounded-full px-6'>
+        <Pressable onPress={()=>mutate()} disabled={isPending} className='bg-white p-3 self-end rounded-full px-6'>
           <Text className='text-black font-bold'>Post</Text>
         </Pressable>
       </View>
