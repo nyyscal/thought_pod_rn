@@ -12,11 +12,19 @@ const NewPostScreen = () => {
       >
 
       <Text className='text-white font-boldtext-lg'>username</Text>
+
       <TextInput 
       value={text}
       onChangeText={setText}
       placeholder='What is on your mind?' 
       placeholderTextColor="white"
+      className='text-white text-lg'
+      multiline numberOfLines={4}/>
+
+      <TextInput 
+      placeholder='What is on your mind?' 
+      placeholderTextColor="white"
+      secureTextEntry={true}
       className='text-white text-lg'
       multiline numberOfLines={4}/>
 
